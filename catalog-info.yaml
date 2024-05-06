@@ -1,0 +1,31 @@
+apiVersion:  backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: NodeApp
+  description: This is a simple Nodejs app deployment
+  annotations:
+    backstage.io/managed-by-location: https://github.com/heraldofsolace/nodejs-app-backend-demo/blob/main/catalog-info.yaml
+    github.com/project-slug: heraldofsolace/nodejs-app-backend-demo
+  tags:
+    - node
+    - web
+    - express
+
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:heraldofsolace
+  providesApis:
+    - user-api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: user-api
+  description: The User Auth Service API
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: user:heraldofsolace
+  definition:
+    $text: https://github.com/heraldofsolace/nodejs-app-backstage-demo/blob/main/openapi.yaml

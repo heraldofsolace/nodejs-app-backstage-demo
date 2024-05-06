@@ -1,0 +1,66 @@
+openapi: 3.1.0
+info:
+  title: User Service API
+  version: 1.0.0
+paths:
+  /register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: The user was successfully created
+        '500':
+          description: There was an error creating the user
+  /login:
+    post:
+      summary: Log in a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: The user was successfully logged in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+        '400':
+          description: Invalid credentials
+        '500':
+          description: There was an error logging in the user
+  /logout:
+    get:
+      summary: Log out a user
+      responses:
+        '200':
+          description: The user was successfully logged out
+        '500':
+          description: There was an error logging out the user
